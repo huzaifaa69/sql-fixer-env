@@ -1,0 +1,64 @@
+name: sql-fixer-env
+version: "1.0.0"
+description: "A real-world SQL query debugging environment where an AI agent must identify and fix broken SQL queries of varying complexity."
+author: "huzaifaa1"
+tags:
+  - sql
+  - debugging
+  - code-repair
+  - openenv
+
+environment:
+  type: http
+  base_url: "http://localhost:7860"
+  endpoints:
+    reset: POST /reset
+    step: POST /step
+    state: GET /state
+
+action_space:
+  type: object
+  properties:
+    query:
+      type: string
+      description: "The fixed SQL query"
+
+observation_space:
+  type: object
+  properties:
+    task_description:
+      type: string
+    broken_query:
+      type: string
+    schema_info:
+      type: string
+    last_result:
+      type: string
+    last_error:
+      type: string
+    hint:
+      type: string
+
+tasks:
+  - name: easy
+    difficulty: easy
+    description: "Fix syntax errors in a simple SELECT query"
+    max_steps: 5
+    reward_threshold: 0.9
+
+  - name: medium
+    difficulty: medium
+    description: "Fix logic errors in a JOIN query"
+    max_steps: 5
+    reward_threshold: 0.9
+
+  - name: hard
+    difficulty: hard
+    description: "Fix and optimize a complex multi-table aggregation query"
+    max_steps: 5
+    reward_threshold: 0.9
+
+reward:
+  min: 0.0
+  max: 1.0
+  description: "Partial credit based on keyword matching, correct tables, and query executability"
