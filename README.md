@@ -1,3 +1,13 @@
+---
+title: SQL Fixer Env
+emoji: 🔧
+colorFrom: blue
+colorTo: green
+sdk: docker
+pinned: false
+tags:
+  - openenv
+---
 # SQL Fixer Environment
 
 An OpenEnv environment where an AI agent must identify and fix broken SQL queries of varying complexity.
