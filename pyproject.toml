@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "sql-fixer-env"
+version = "1.0.0"
+description = "A real-world OpenEnv environment for fixing broken SQL queries"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "pydantic",
+    "openai",
+    "openenv-core",
+    "httpx",
+]
+
+[tool.openenv]
+name = "sql-fixer-env"
+version = "1.0.0"
+entrypoint = "server.app:app"
