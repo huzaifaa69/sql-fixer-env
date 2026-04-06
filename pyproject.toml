@@ -16,6 +16,9 @@ dependencies = [
     "httpx",
 ]
 
+[project.scripts]
+server = "server.app:main"
+
 [tool.openenv]
 name = "sql-fixer-env"
 version = "1.0.0"
