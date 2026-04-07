@@ -116,7 +116,7 @@ class SQLFixerEnv:
 
     def _grade(self, query: str, error: Optional[str]) -> float:
         if error:
-            return 0.0
+            return 0.01
         solution = self.task["solution"].upper()
         query_up = query.upper()
         score = 0.0
@@ -133,7 +133,9 @@ class SQLFixerEnv:
             score += 0.3 * table_score
         if not error and len(query) > 10:
             score += 0.2
-        return min(round(score, 2), 1.0)
+            score = min(round(score, 2), 0.99)
+            score = max(score, 0.01)
+            return score
 
     def state(self):
         return {
