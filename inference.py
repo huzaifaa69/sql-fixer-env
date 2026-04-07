@@ -1,17 +1,16 @@
-import asyncio
 import os
 import textwrap
 from typing import List, Optional
 from openai import OpenAI
 import httpx
 
-API_BASE_URL = os.getenv("API_BASE_URL", "https://router.huggingface.co/v1")
+API_BASE_URL = os.environ["API_BASE_URL"]
+API_KEY = os.environ["API_KEY"]
 MODEL_NAME = os.getenv("MODEL_NAME", "Qwen/Qwen2.5-72B-Instruct")
 HF_TOKEN = os.getenv("HF_TOKEN")
-API_KEY = HF_TOKEN
 TASK_NAME = os.getenv("SQL_ENV_TASK", "easy")
 BENCHMARK = "sql-fixer-env"
-ENV_URL = os.getenv("ENV_URL") or "http://localhost:7860"
+ENV_URL = os.getenv("ENV_URL", "http://localhost:7860")
 MAX_STEPS = 5
 
 def log_start(task, env, model):
