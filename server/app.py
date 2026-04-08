@@ -6,11 +6,11 @@ from environment import SQLFixerEnv, SQLAction
 
 app = FastAPI(title="SQL Fixer OpenEnv")
 
-# Global env instances for each task
 envs = {
     "easy": SQLFixerEnv("easy"),
     "medium": SQLFixerEnv("medium"),
-    "hard": SQLFixerEnv("hard")
+    "hard": SQLFixerEnv("hard"),
+    "expert": SQLFixerEnv("expert"),
 }
 
 class ResetRequest(BaseModel):
@@ -51,9 +51,10 @@ def state(task: str = "easy"):
 def tasks():
     return {
         "tasks": [
-            {"name": "easy", "difficulty": "easy"},
-            {"name": "medium", "difficulty": "medium"},
-            {"name": "hard", "difficulty": "hard"}
+            {"name": "easy", "difficulty": "easy", "description": "Fix syntax errors in a simple SELECT query"},
+            {"name": "medium", "difficulty": "medium", "description": "Fix logic errors in a JOIN query"},
+            {"name": "hard", "difficulty": "hard", "description": "Fix complex multi-table aggregation query"},
+            {"name": "expert", "difficulty": "hard", "description": "Write query using HAVING and CASE expressions"},
         ]
     }
 
